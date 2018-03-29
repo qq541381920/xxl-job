@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans          
+    http://www.springframework.org/schema/beans/spring-beans.xsd          
+    http://code.alibabatech.com/schema/dubbo          
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+	<dubbo:application name="fl-demo-web-consume" />
+	<!-- 使用ZOOKEEPER注册中心暴露发现服务地址 -->
+	<dubbo:registry protocol="zookeeper" address="localhost:2181" register="false"/>
+	<!-- 用DUBBO协议在20880端口暴露服务 正式需要 -->
+	<dubbo:protocol name="dubbo" port="20880" />
+	<!-- 当ProtocolConfig和ServiceConfig某属性没有配置时,采用此缺省值 -->
+	<dubbo:provider serialization="java" timeout="10000" threadpool="fixed" threads="100" accepts="1000" />
+
+</beans> 
